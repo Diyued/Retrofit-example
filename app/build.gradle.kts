@@ -60,5 +60,13 @@ dependencies {
     implementation("com.squareup.retrofit2:retrofit:2.9.0")
     implementation("com.squareup.retrofit2:converter-gson:2.9.0")
     implementation("org.jetbrains.kotlinx:kotlinx-coroutines-android:1.7.1")
+    // Dependencias para pruebas
+    testImplementation("junit:junit:4.13.2")
+
+    testImplementation("io.strikt:strikt-core:0.35.1")
+// Para assertions modernas
+    testImplementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:1.7.3")
+// MockWebServer para simular respuestas HTTP
+    testImplementation("com.squareup.okhttp3:mockwebserver:4.11.0")
 
 }
