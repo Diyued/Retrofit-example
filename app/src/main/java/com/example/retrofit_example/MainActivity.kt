@@ -1,26 +1,20 @@
 package com.example.retrofit_example
 
+import android.app.Activity
 import android.os.Bundle
-import androidx.activity.ComponentActivity
-import androidx.activity.compose.setContent
-import androidx.activity.enableEdgeToEdge
-import androidx.appcompat.app.AppCompatActivity
-import androidx.compose.foundation.layout.fillMaxSize
-import androidx.compose.foundation.layout.padding
-import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
-import androidx.compose.runtime.Composable
-import androidx.compose.ui.Modifier
-import androidx.compose.ui.tooling.preview.Preview
-import com.example.retrofit_example.ui.theme.RetrofitexampleTheme
+import android.widget.TextView
+import com.example.retrofit_example.data.network.RetrofitClient
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
-class MainActivity : AppCompatActivity() {
+class MainActivity : Activity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        enableEdgeToEdge()
-        setContentView(R.layout.activity_main)
-
-        val textView = findViewById<TextView>(R.id.textView)
+        val textView = TextView(this)
+        textView.textSize = 18f
+        textView.text = "Cargando pokemones..."
+        setContentView(textView)
 
         CoroutineScope(Dispatchers.IO).launch {
             val response = RetrofitClient.instance.getPokemons()
@@ -35,21 +29,5 @@ class MainActivity : AppCompatActivity() {
                 }
             }
         }
-    }
-}
-
-@Composable
-fun Greeting(name: String, modifier: Modifier = Modifier) {
-    Text(
-        text = "Hello $name!",
-        modifier = modifier
-    )
-}
-
-@Preview(showBackground = true)
-@Composable
-fun GreetingPreview() {
-    RetrofitexampleTheme {
-        Greeting("Android")
     }
 }
